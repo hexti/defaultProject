@@ -2,8 +2,6 @@
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-session_start();
-
 use \Symfony\Component\Dotenv\Dotenv;
 use \Symfony\Component\Debug\Debug;
 use \Symfony\Component\Debug\DebugClassLoader;

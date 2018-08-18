@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use \Symfony\Component\Dotenv\Dotenv;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -15,11 +16,13 @@ class EntityDB
 
     public function __construct()
     {
+        (new Dotenv())->load(dirname(__DIR__).'/.env');
+
         $conn = array(
-            'dbname' => 'seinf_db',
-            'user' => 'root',
-            'password' => 'root',
-            'host' => 'localhost',
+            'dbname' => getenv('DB_BASE'),
+            'user' => getenv('DB_USER'),
+            'password' => getenv('DB_PASS'),
+            'host' => getenv('DB_HOST'),
             'driver' => 'pdo_mysql',
         );
 
