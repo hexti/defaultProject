@@ -1,0 +1,33 @@
+#situacao-col img {
+	width: 30%;
+	margin: 0 auto;
+}
+
+#situacao-col {
+	text-align: center;
+}
+
+#tabela-home th {
+	text-align: center;
+}
+#tabela-home p{
+	text-align: center;
+}
+
+#modulos-left {
+	overflow: scroll;
+}
+
+#modulos-right{
+	margin: 0 auto;
+	text-align: center;
+}
+#modulos-right a{
+	height: 50px;
+	width: 330px;
+}
+
+.border_verde{
+	border: 2px solid #55908C;
+	height: 23px;
+}

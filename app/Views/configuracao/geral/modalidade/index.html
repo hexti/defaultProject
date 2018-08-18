@@ -1,0 +1,176 @@
+{% extends "template.html" %}
+
+{% block content %}
+<section class="content">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <!--<?php if(in_array(18, $acesso)){?>-->
+                <a class="btn btn-primary pull-right" href="novo" data-toggle="tooltip" data-placement="top" title="Novo">
+                    <i class="material-icons md-light">add_box</i>
+                </a>
+                <!--<?php }?>-->
+                <h4>{{ titulo }}</h4>
+            </div>
+
+
+            <div class="body">
+                <?php $php_self = str_replace(FOLDER, "", $_SERVER['PHP_SELF']);?>
+                <form action="<?php echo EXTERNAL_ROOT_PORTAL.$php_self;?>" method="get" class="form-inline">
+                    <div class="form-group">
+                        <div class="controls">
+                            <div class="input-append">
+                                <select class="span1" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                                    <!--<option value="<?php echo EXTERNAL_ROOT_PORTAL.$php_self;?>?qtd=10<?php echo $link_busca?>"&lt;!&ndash; <?php if($qnt==10){echo "selected";}?>&ndash;&gt;>10</option>
+                                    <option value="<?php echo EXTERNAL_ROOT_PORTAL.$php_self;?>?qtd=25<?php echo $link_busca?>" &lt;!&ndash;<?php if($qnt==25){echo "selected";}?>&ndash;&gt;>25</option>
+                                    <option value="<?php echo EXTERNAL_ROOT_PORTAL.$php_self;?>?qtd=50<?php echo $link_busca?>" &lt;!&ndash;<?php if($qnt==50){echo "selected";}?>&ndash;&gt;>50</option>
+                                    <option value="<?php echo EXTERNAL_ROOT_PORTAL.$php_self;?>?qtd=100<?php echo $link_busca?>" &lt;!&ndash;<?php if($qnt==100){echo "selected";}?>&ndash;&gt;>100</option>-->
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+
+                            </div>
+                            <input class="btn btn-default active pull-right" type="submit" value="Buscar">
+                            <input type="hidden" name="qtd" value="<?php echo $qnt?>">
+                            <div class="col-sm-3 pull-right">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <!--<input name="q" type="text" class="form-control" id="typeahead" value="<?php if(!empty($_GET['q'])){ echo $_GET['q'];}?>">-->
+                                        <input name="q" type="text" class="form-control" id="typeahead" value="">
+                                        <label class="form-label">Buscar...</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <table class="table table-bordered table-striped table-condensed col-xs-12 col-md-12">
+                    <thead>
+                    <tr>
+                        <th nowrap>Nome</th>
+                        <th nowrap>A&ccedil;&atilde;o</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<?php
+                        $inicio = ($pagina * $qnt) - $qnt;
+
+                        $limit =  " LIMIT ".$inicio.", ".$qnt;
+
+                        $order_by = " ORDER BY id DESC ";
+
+                        $query = "SELECT
+                                        *
+                                    FROM ".MYSQL_BASE_PROGRAMA_MODALIDADE."
+                                    WHERE
+                                        excluido IS NULL
+                                        ".$where;
+
+                        $retorno = $DAO->listar($query.$order_by.$limit);
+
+                    $confirm = "return confirm('Deseja remover esse registro?');";
+
+                    foreach ( $retorno as $item ) {
+                    echo '<tr>';
+                        echo '	<td>'.$item['nome'].'</td>';
+                        echo '	<td>';
+
+                            if(in_array(19, $acesso)){
+                            echo '		<a data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-info" href="edit.php?id='.$item['id'].'">';
+                                echo '			<i class="material-icons md-light">mode_edit</i>';
+                                echo '		</a>';
+                            }
+
+                            if(in_array(20, $acesso)){
+                            echo '		<a data-toggle="tooltip" data-placement="top" title="Deletar" class="btn btn-danger" onclick="'.$confirm.'" href="index.php?cmd=del&id='.$item['id'].'">';
+                                echo '			<i class="material-icons md-light">delete</i>';
+                                echo '		</a>';
+                            }
+                            echo '	</td>';
+                        echo '</tr>';
+                    }
+                    ?>-->
+                    </tbody>
+                </table>
+
+                <div class="pagination pagination-centered">
+                    <nav>
+                        <ul class="pagination">
+                            <!--<?php
+
+                                $stmt = $retorno;
+
+                                $total_registros = $stmt->rowCount();
+
+                            $pags = ceil($total_registros/$qnt);
+                            // Número máximos de botões de paginação
+                            $max_links = 3;
+                            $get = "";
+
+                            //Montando os gets para paginacao
+                            if(!empty($_POST['q'])){
+
+                            $keys = array_keys($_POST);
+                            foreach ($keys as $value){
+                            if($value != 'p'){
+                            $get .= '&'.$value.'='.$_POST[$value];
+                            }
+                            }
+                            }
+
+                            //Montando os gets para paginacao
+                            if(!empty($_GET['q'])){
+
+                            $keys = array_keys($_GET);
+                            foreach ($keys as $value){
+                            if($value != 'p'){
+                            $get .= '&'.$value.'='.$_GET[$value];
+                            }
+                            }
+                            }
+
+                            echo '<li><a href="'.EXTERNAL_ROOT_PORTAL.$php_self.'?p=1'.$get.'">Inicio</a></li>';
+
+                            //Gera as duas paginacao anterior
+                            for($i = $pagina-2; $i < $pagina; $i++) {
+                            if($i> 0 && $i != $pagina){
+                            echo '<li><a href="'.EXTERNAL_ROOT_PORTAL.$php_self.'?p='.$i.$get.'" target="_self">'.$i.'</a></li>';
+                            }
+                            }
+
+                            //Gera a paginacao atual e as duas proximas
+                            for($i = $pagina; $i <= $pagina+$max_links-1; $i++) {
+                            // Se o número da página for menor ou igual a zero, não faz nada
+                            // (afinal, não existe página 0, -1, -2..)
+                            if($i <= 0) {
+                            //faz nada
+                            // Se estiver tudo OK, cria o link para outra página
+                            } else {
+                            if($i == $pagina){
+                            echo '<li class="active"><a href="#" target="_self">'.$i.'</a></li>';
+                            }elseif($pags >= $i){
+                            echo '<li><a href="'.EXTERNAL_ROOT_PORTAL.$php_self.'?p='.$i.$get.'" target="_self">'.$i.'</a></li>';
+                            }
+                            }
+                            }
+
+                            echo '<li><a href="'.EXTERNAL_ROOT_PORTAL.$php_self.'?p='.$pags.$get.'" target="_self">Fim</a></li>';
+                            ?>-->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="span12">
+                    <div id="DataTables_Table_0_info" class="dataTables_info">Total de <?php echo $total_registros;?> Iten(s)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<script>
+    $('select').select2();
+</script>
+{% endblock %}

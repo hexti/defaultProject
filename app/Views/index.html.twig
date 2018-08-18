@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Login | SysPlenus</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="{{ assets('adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{{ assets('adminbsb-materialdesign/plugins/node-waves/waves.css') }}" rel="stylesheet"/>
+
+    <!-- Animation Css -->
+    <link href="{{ assets('adminbsb-materialdesign/plugins/animate-css/animate.css') }}" rel="stylesheet"/>
+
+    <!-- Custom Css -->
+    <link href="{{ assets('adminbsb-materialdesign/css/style.css') }}" rel="stylesheet">
+
+    <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/jquery/jquery.min.js') }}"></script>
+
+    <style>
+        [data-display='alert'] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+        <div class="card">
+            <div class="logo">
+                <div class="col-xs-12 align-center">
+                    <br>
+                    <img src="{{ assets('img/pmf.png') }}">
+                </div>
+                <small class="font-bold col-cyan">SysPlenus .::. Bem Vindo.</small>
+            </div>
+
+            <div class="body">
+                {{ form_start(form) }}
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            {{ form_widget(form.usuario) }}
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line <?php echo $class; ?>">
+                            {{ form_widget(form.senha) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 pull-right">
+                            <button class="btn btn-block bg-green waves-effect" type="submit">ENTRAR</button>
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+
+                    {# <div class="alert bg-red alert-dismissible" role="alert" data-display="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        Usuário ou senha inválido.
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line <?php echo $class; ?>">
+                            <input type="email" class="form-control error" name="usuario" placeholder="Usuário" required
+                                   autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line <?php echo $class; ?>">
+                            <input type="password" class="form-control" name="senha" placeholder="Senha" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 pull-right">
+                            <button class="btn btn-block bg-green waves-effect" type="submit">ENTRAR</button>
+                        </div>
+                    </div>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-12 align-right">
+                            <a href="mailto:anderson.freitas@concremat.com.br?Subject=Redefinir%20senha;">Esqueceu a
+                                senha?</a>
+                        </div>
+                    </div> #}
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    $('form[name=form]').submit(function (evt) {
+        evt.preventDefault();
+        const usuario = $('input[name="form[usuario]"]').val();
+        const senha = $('input[name="form[senha]"]').val();
+
+        $.ajax({
+            type: "POST",
+            url: '/login',
+            data: {usuario, senha}
+        })
+            .done(function (dado) {
+                console.log(dado);
+                if (dado.retorno) {
+                    window.location = '/';
+                } else {
+                    $('[data-display="alert"]').css('display', 'block');
+                }
+            });
+    })
+</script>
+
+<!-- Jquery Core Js -->
+<script src="{{ assets('adminbsb-materialdesign/plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- Bootstrap Core Js -->
+<script src="{{ assets('adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js') }}"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="{{ assets('adminbsb-materialdesign/plugins/node-waves/waves.js') }}"></script>
+
+<!-- Validation Plugin Js -->
+<script src="{{ assets('adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js') }}"></script>
+
+<!-- Custom Js -->
+<!--<script src="adminbsb-materialdesign/js/admin.js"></script>-->
+<script src="{{ assets('adminbsb-materialdesign/js/pages/examples/sign-in.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Concremat Engenharia .::. Plenus</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ assets('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ assets('css/bootstrap-nav-wizard.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ assets('js/jquery-ui-1.11.4/jquery-ui.css') }}">
+    <script src="{{ assets('js/jquery-1.7.2.min.js') }}"></script>
+    <script src="{{ assets('/js/jquery-ui-1.11.4/jquery-ui.js') }}"></script>
+
+    <!-- Toastr notifications -->
+    <link href="{{ assets('js/bower_components/toastr/toastr.css') }}" rel="stylesheet"/>
+    <script src="{{ assets('js/bower_components/toastr/toastr.js') }}"></script>
+
+    <!-- Jasny -->
+    <link href="{{ assets('css/jasny-bootstrap.min.css') }}" rel="stylesheet"/>
+    <script src="{{ assets('js/jasny-bootstrap.min.js') }}"></script>
+    <!-- Select2 -->
+    <link href="{{ assets('js/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{ assets('js/bower_components/select2/dist/js/select2.min.js') }}"></script>
+
+
+    <!-- Folhas de Estilo para Novo Layout -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Select Css -->
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/plugins/bootstrap-select/css/bootstrap-select.css') }}">
+
+    <!-- Waves Effect Css -->
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/plugins/node-waves/waves.css') }}">
+
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/plugins/sweetalert/sweetalert.css') }}">
+
+    <!-- Animation Css -->
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/plugins/animate-css/animate.min.css') }}">
+
+    <!-- Multi Select Css -->
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/plugins/multi-select/css/multi-select.css') }}">
+
+    <!-- Morris Chart Css-->
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/plugins/morrisjs/morris.css') }}">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ assets('adminbsb-materialdesign/css/themes/all-themes.css') }}">
+
+    <link rel="stylesheet" href="{{ assets('css/style.css') }}">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{{ assets('css/bootstrap-nav-wizard.css') }}" rel="stylesheet">
+
+    <link href="{{ assets('css/font-awesome.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/pdfmake-0.1.18/dt-1.10.13/af-2.1.3/b-1.2.4/b-colvis-1.2.4/b-flash-1.2.4/b-html5-1.2.4/b-print-1.2.4/cr-1.3.2/fc-3.2.2/fh-3.1.2/kt-2.2.0/r-2.1.0/rr-1.2.0/sc-1.4.2/se-1.2.0/datatables.min.css"/>
+
+    <link rel="stylesheet" href="{{ assets('css/jquery-ui.css') }}"/>
+    <link rel="stylesheet" href="{{ assets('css/select2.min.css') }}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{{ assets('js/Inputmask/dist/inputmask/inputmask.js') }}"></script>
+    <script src="{{ assets('js/Inputmask/dist/inputmask/inputmask.date.extensions.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</head>
+
+<body class="theme-teal">
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+               data-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="javascript:void(0);" class="bars">&nbsp;</a>
+            <a class="navbar-brand logo" href="">
+                <img style="margin-top: -15px;" width="160" src="{{ assets('img/logo_pmf3.png') }}">
+            </a><a class="navbar-brand" href="">
+            SysPlenus
+        </a>
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!- - Notifications - ->
+                <!--<?php
+                        $link = connectSQL();
+
+                        $query = mysqli_query($link, "SELECT * FROM ".MYSQL_BASE_NOTIFICACAO." WHERE visualizado IS NULL AND id_usuario = ".userId());
+
+                        $count = mysqli_num_rows($query) > 0 ? mysqli_num_rows($query) : '';
+                ?>-->
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       onclick="Notificacao();">
+                        <i class="material-icons">notifications</i>
+                        <span class="label-count"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">NOTIFICAÇÃO</li>
+                        <li class="body">
+                            <ul class="menu">
+                                <!--<?php
+                                        $link = connectSQL();
+
+                                        $query = mysqli_query($link, "SELECT
+                                                                            *,
+                                                                            IF(TIMESTAMPDIFF(MONTH, criado, NOW()) >= 1,
+                                CONCAT(TIMESTAMPDIFF(MONTH, criado, NOW()), ' mês(meses) atrás'),
+                                IF(DATEDIFF(NOW(), criado) >= 1,
+                                CONCAT(TIMESTAMPDIFF(DAY, criado, NOW()), ' dia(s) atrás'),
+                                IF(TIMESTAMPDIFF(MINUTE, criado, NOW()) >= 60,
+                                CONCAT(TIMESTAMPDIFF(HOUR, criado, NOW()), ' hora(s) atrás'),
+                                CONCAT(TIMESTAMPDIFF(MINUTE, criado, NOW()), ' minuto(s) atrás')
+                                )
+                                )
+                                ) as tempo
+                                FROM
+                                tb_notificacao
+                                WHERE
+                                visualizado IS NULL AND
+                                id_usuario = ".userId()."
+                                ORDER BY criado DESC
+                                LIMIT 5");
+
+                                $num = mysqli_num_rows($query);
+                                $limit = 5 - $num;
+
+                                while($row = mysqli_fetch_array($query)){
+                                $descricao = $row['descricao'];
+
+                                if(strlen($row['descricao']) > 30){
+                                $descricao = mb_substr($row['descricao'], 0, 30, 'UTF-8' ).' ...';
+                                }
+                                echo '
+                                <li style="background-color: #F5F5F5;">
+                                    <a href="'.$row['link'].'" target="'.$row['target'].'">
+                                        <div class="icon-circle '.$row['cor'].'">
+                                            <i class="material-icons">'.$row['icone'].'</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>'.$descricao.'</h4>
+                                            <p><i class="material-icons">access_time</i> '.$row['tempo'].'</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                ';
+                                }
+
+                                $query = mysqli_query($link, "SELECT
+                                *
+                                FROM
+                                tb_notificacao
+                                WHERE
+                                visualizado IS NOT NULL AND
+                                id_usuario = ".userId()."
+                                ORDER BY criado DESC
+                                LIMIT ".$limit);
+
+                                while($row = mysqli_fetch_array($query)){
+                                $descricao = $row['descricao'];
+
+                                if(strlen($row['descricao']) > 30){
+                                $descricao = mb_substr($row['descricao'], 0, 30, 'UTF-8' ).' ...';
+                                }
+                                echo '
+                                <li>
+                                    <a href="'.$row['link'].'" target="'.$row['target'].'">
+                                        <div class="icon-circle '.$row['cor'].'">
+                                            <i class="material-icons">'.$row['icone'].'</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>'.$descricao.'</h4>
+                                            <p>&nbsp;</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                ';
+                                }
+                                ?>-->
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="configuracao/notificacao/">Visualiazar Todas as
+                                Notificações</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script>
+    function Notificacao() {
+        $.getJSON('configuracao/notificacao/notificacao.ajax.php?', {
+                q: 1,
+                user: 'teste',
+                ajax: 'true'
+            },
+            function (j) {
+            }
+        )
+        ;
+    }
+</script>
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="image">
+                <img src="{{ assets('adminbsb-materialdesign/images/user.png') }}" width="48" height="48" alt="User"/>
+            </div>
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </div>
+                <div class="email">
+                </div>
+
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="/pessoal/usuario/password"><i class="material-icons">vpn_key</i>Trocar Senha</a>
+                        </li>
+                        <li role="seperator" class="divider"></li>
+                        <li><a href="/logout"><i class="material-icons">input</i>Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">Menu Principal</li>
+                <li class="">
+                    <a href="">
+                        <i class="material-icons">home</i>
+                        <span>Início</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">insert_chart</i>
+                        <span>Dashboard</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                        <li class=""><a href="dashboard/maps.php">Mapas das Obras</a></li>
+                        <li class=""><a href="dashboard/">Acompanhamento de Intervenção</a></li>
+                        <li class=""><a href="dashboard/organizacao.php">Estrutura da EAP</a></li>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="configuracao;?>">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">build</i>
+                        <span>Configuração</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span> Geral</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="configuracao/secretaria/">Secretaria</a></li>
+                                <li class=""><a href="configuracao/modalidade/">Modalidade</a></li>
+                            </ul>
+                        </li>
+                        <li class="estrutura_analitica;?>">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Estrutura Analítica</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="configuracao/programa/index.php">Programa</a></li>
+                                <li class=""><a href="configuracao/projeto/index.php">Projeto</a></li>
+                                <li class=""><a href="configuracao/area/index.php">Área</a></li>
+                                <li class=""><a href="configuracao/produto/index.php">Produto</a></li>
+                                <li class=""><a href="configuracao/tipo_programa/index.php">Tipo Programa</a></li>
+                                <li class=""><a target="_blank" href="configuracao/relatorio/programa.php">Relatório de
+                                    Todos Os Programas</a></li>
+                                <li class=""><a href="configuracao/localizacao/index.php">Localização</a></li>
+                            </ul>
+                        </li> <!-- Fim Estrutura Analítica -->
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span> Contrato</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="configuracao/empresa/index.php">Empresa</a></li>
+                                <li class=""><a href="configuracao/unidade/index.php">Unidade</a></li>
+                                <li class=""><a href="configuracao/assinatura/index.php">Assinatura</a></li>
+                                <li class=""><a href="configuracao/tipo_apostilamento/index.php">Tipo de
+                                    Apostilamento</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span> Financeiro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="configuracao/eap_financeira_programa/index.php">EAP Orçamentária -
+                                    Financeira</a></li>
+                                <li class=""><a href="configuracao/moeda/index.php">Moeda</a></li>
+                                <li class=""><a href="configuracao/banco/index.php">Banco</a></li>
+                                <li class=""><a href="configuracao/tipo_pagamento/index.php">Tipo De Forma De
+                                    Pagamento</a></li>
+                                <li class=""><a href="configuracao/objeto_pagamento/index.php">Objeto de Pagamento</a>
+                                </li>
+                                <li class=""><a href="configuracao/fonte/index.php">Fonte</a></li>
+                                <li class=""><a href="configuracao/fonte_pagamento/index.php">Fonte de Pagamento</a>
+                                </li>
+                                <li class=""><a href="configuracao/transacao/index.php">Transação Financeira</a></li>
+                                <li class=""><a href="configuracao/tipo_desembolso/index.php">Tipo de Desembolso</a>
+                                </li>
+                                <li class=""><a href="configuracao/indices/index.php">Índices</a></li>
+                                <li class=""><a href="configuracao/cotacao/index.php">Cotação</a></li>
+                                <li class=""><a href="configuracao/tipo_operacao/index.php">Tipo da Operação</a></li>
+                                <li class=""><a href="configuracao/organizacao_operacao_financeira/index.php">Organização
+                                    de Operação Financeira</a></li>
+                                <li class=""><a href="configuracao/conciliacao/index.php">Conciliação para Plano
+                                    Financeiro</a></li>
+                                <li class=""><a href="configuracao/tipo_diferenca/index.php">Tipo da Diferença</a></li>
+                            </ul>
+                        </li> <!-- Fim Financeiro -->
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span> Obra</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="configuracao/relatorio_fotografico_categoria/index.php">Categoria
+                                    - Rel. Fotográfico</a></li>
+                            </ul>
+                        </li> <!-- Fim Obra -->
+                    </ul>
+                </li> <!-- Fim Estrutura Analítica -->
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">folder_shared</i>
+                        <span>GED</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle toggled">
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="ged/documento/index.php">Documentos</a></li>
+                                <li class=""><a href="ged/eap/index.php">Intervenção</a></li>
+                                <li class=""><a href="ged/area_documento/index.php">Célula</a></li>
+                                <li class=""><a href="ged/subarea/index.php">Especialidade</a></li>
+                                <li class=""><a href="ged/tipo_documento/index.php">Tipo de Documento</a></li>
+                                <li class=""><a href="ged/origem/index.php">Origem do Documento</a></li>
+                                <li class=""><a href="">Fase do Projeto</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">assignment</i>
+                        <span>Contrato</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="contrato/contrato/index.php">Contrato</a></li>
+                                <li class=""><a href="contrato/acesso/index.php">Liberar Acesso Ao Contrato</a></li>
+                                <li class=""><a href="contrato/unir/index.php">Unir Contratos</a></li>
+                                <li class=""><a href="contrato/ped/index.php">Pacote de Entrega de Documentos</a></li>
+                                <li class=""><a href="contrato/versao/index.php">Definir Versão do Contrato</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Relatório</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="contrato/relatorio/acompanhamento.php">Acompanhamento</a></li>
+                                <li class=""><a href="contrato/relatorio/indice.php">Indíces</a></li>
+                                <li class=""><a href="contrato/relatorio/planilha_contratual.php">Planilha
+                                    Contratual</a></li>
+                                <li><a href="contrato/relatorio/contrato_detalhado.php?cmd=relatorio&programa=8">Contrato
+                                    Detalhado</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">straighten</i>
+                        <span>Medição</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="medicao/cadastro/index.php">Cadastro</a></li>
+                                <li class=""><a href="medicao/glosa/index.php">Desglosa</a></li>
+                                <li class=""><a href="medicao/fluxo/index.php">Fluxo</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Relatório</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="medicao/relatorio/bm.php">Boletim de Medição</a></li>
+                                <li class=""><a href="medicao/relatorio/bm_desglosa.php">Desglosa da Medição</a></li>
+                                <li class=""><a href="medicao/relatorio/fluxo.php">Fluxo</a></li>
+                                <li class=""><a href="medicao/relatorio/caixa.php">Folha de Rosto - Caixa</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">directions</i>
+                        <span>Obra</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Acompanhamento</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="obra/planejamento/index.php">Planejamento</a></li>
+                                <li class=""><a href="obra/visita/index.php">Visita Técnica</a></li>
+                                <li class=""><a href="obra/relatorio_fotografico/index.php">Relatório Fotográfico</a>
+                                </li>
+                                <li class=""><a href="obra/social/index.php">Social</a></li>
+                                <li class=""><a href="obra/ambiental/index.php">Ambiental</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Relatório</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="obra/relatorio/fotografico.php">Fotográfico</a></li>
+                                <li class=""><a href="obra/relatorio/social.php">Social</a></li>
+                                <li class=""><a href="obra/relatorio/ambiental.php">Ambiental</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">attach_money</i>
+                        <span>Financeiro</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="financeiro/orcamento/index.php">Orçamento</a></li>
+                                <li class=""><a href="financeiro/internalizacao/index.php">Internalizacao</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Faturamento</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="financeiro/distribuicao/index.php">Distribuição</a></li>
+                                <li class=""><a href="financeiro/pagamento/index.php">Pagamento</a></li>
+                            </ul>
+                        </li> <!-- Fim Faturamento -->
+
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Prestação de Contas</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="financeiro/modalidade/index.php">Modalidade</a></li>
+                                <li class=""><a href="financeiro/pedido_desembolso/index.php">Pedido de Desembolso</a>
+                                </li>
+                                <li class=""><a href="financeiro/plano_financeiro/index.php">Plano Financeiro</a></li>
+                                <li class=""><a href="financeiro/diferenca_apurada/index.php">Diferença Apurada</a></li>
+                            </ul>
+                        </li> <!-- Fim Prestação de Contas -->
+
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Financeiro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="financeiro/movimentacao/index.php">Movimentação</a></li>
+                            </ul>
+                        </li> <!-- Fim Financeiro SubMenu -->
+
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Relatório</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="financeiro/relatorio/formulario.php">Formulário do Pedido de
+                                    Desembolso</a></li>
+
+                                <li class=""><a href="financeiro/relatorio/index.php">Demonstrativo de Gastos</a></li>
+                                <li class=""><a href="financeiro/relatorio/gasto_pendente.php">Fundos Utilizados
+                                    Pendentes de Justificação</a></li>
+                                <li class=""><a href="financeiro/relatorio/estado_execucao.php">Estado de Execução do
+                                    Projeto</a></li>
+                                <li class=""><a href="financeiro/relatorio/conciliacao.php">Conciliação dos Recursos</a>
+                                </li>
+                                <li class=""><a href="financeiro/relatorio/plano_financeiro.php">Plano Financeiro</a>
+                                </li>
+                                <li class=">"><a href="financeiro/relatorio/exportar_pagamentos.php?cmd=relatorio">Exportar
+                                    Pagamentos</a></li>
+                            </ul>
+                        </li> <!-- Fim Relatório -->
+                    </ul>
+                    <?php }?>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">timeline</i>
+                        <span>Gerenciamento</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="gerenciamento/cronograma_master/index.php">Cronograma Financeiro
+                                    Master</a></li>
+
+                                <li class=""><a href="gerenciamento/contrato_emprestimo/index.php">Contrato de
+                                    Empréstimo</a></li>
+                                <li class=""><a href="gerenciamento/agente_financiador/index.php">Agente Financiador</a>
+                                </li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Relatório</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="gerenciamento/relatorio/execucao_financeira.php">Execução
+                                    Financeira</a></li>
+                                <li class=""><a href="gerenciamento/relatorio/controle_clausulas.php">Controle de
+                                    Cláusulas</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                    </ul>
+                    <?php }?>
+                </li>
+
+                <li class="">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">people</i>
+                        <span>S. Pessoal</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle toggled">
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li class=""><a href="pessoal/colaborador/index.php">Colaborador</a></li>
+                                <li class=""><a href="pessoal/usuario/index.php">Usuário</a></li>
+                                <li class=""><a href="pessoal/grupo/index.php">Grupo</a></li>
+                                <li class=""><a href="pessoal/funcionalidade/index.php">Funcionalidade</a></li>
+                            </ul>
+                        </li> <!-- Fim Cadastro -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+
+        <!-- Footer -->
+        <div class="legal">
+            <div class="copyright">
+                <p><a href="">Problemas ao utilizar o sistema?</a></p>
+            </div>
+            <div class="copyright">
+                &copy; <a target="_blank" href="http://www.concremat.com.br">Concremat Engenharia.<br>
+                <img width="30%" src="{{ assets('img/cmat.png') }}"></a>
+            </div>
+        </div>
+        <!-- #Footer -->
+    </aside>
+
+    <!-- #END# Left Sidebar -->
+    </div>
+    {% block content %}
+    {% endblock %}
+    <div>
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ assets('js/jquery-1.10.2.js') }}"></script>
+        <script src="{{ assets('js/jquery-ui.js') }}"></script>
+        <!--<script src="< ?php echo EXTERNAL_ROOT_PORTAL; ? >/js/bootstrap.min.js"></script>-->
+
+        <!-- Select Plugin Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
+
+        <!-- Jquery Core Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/momentjs/moment.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/jquery/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('js/jquery.dataTables.js') }}"></script>
+        <!-- Bootstrap Core Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+        <!-- Slimscroll Plugin Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+
+        <!-- Multi Select Plugin Js -->
+        <script src="{{ assets('adminbsb-materialdesign/plugins/multi-select/js/jquery.multi-select.js') }}"></script>
+
+        <script src="{{ assets('adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js') }}"></script>
+
+        <script src="{{ assets('adminbsb-materialdesign/plugins/bootstrap-notify/bootstrap-notify.js') }}"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/node-waves/waves.js') }}"></script>
+
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/sweetalert/sweetalert.min.js') }}"></script>
+
+        <!-- Jquery CountTo Plugin Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/jquery-countto/jquery.countTo.js') }}"></script>
+
+        <!-- Morris Plugin Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/raphael/raphael.min.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/morrisjs/morris.min.js') }}"></script>
+
+        <!-- ChartJs -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/chartjs/Chart.bundle.min.js') }}"></script>
+
+        <!-- Flot Charts Plugin Js -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/flot-charts/jquery.flot.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/flot-charts/jquery.flot.resize.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/flot-charts/jquery.flot.pie.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/flot-charts/jquery.flot.categories.js') }}"></script>
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/flot-charts/jquery.flot.time.js') }}"></script>
+
+        <!-- Sparkline Chart Plugin Js -->
+        <script src="{{ assets('adminbsb-materialdesign/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
+        <!-- Morris -->
+        <script src="{{ assets('adminbsb-materialdesign/plugins/raphael/raphael.min.js')}} "></script>
+        <script src="{{ assets('adminbsb-materialdesign/plugins/morrisjs/morris.js') }}"></script>
+
+        <!-- Image Galery -->
+        <script src="{{ assets('adminbsb-materialdesign/plugins/light-gallery/js/lightgallery-all.js') }}"></script>
+        <script src="{{ assets('adminbsb-materialdesign/js/pages/medias/image-gallery.js') }}"></script>
+
+        <!-- Custom Js -->
+        <script src="{{ assets('adminbsb-materialdesign/js/admin.js') }}"></script>
+        <script src="{{ assets('adminbsb-materialdesign/js/pages/forms/form-validation.js') }}"></script>
+        <script src="{{ assets('adminbsb-materialdesign/js/pages/index.js') }}"></script>
+
+        <!-- Demo Js -->
+        <script src="{{ assets('adminbsb-materialdesign/js/demo.js') }}"></script>
+
+        <!-- DateTimePicker -->
+        <script type="text/javascript" src="{{ assets('adminbsb-materialdesign/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+    </div>
+</section>
+</body>
+</html>

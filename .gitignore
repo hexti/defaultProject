@@ -1,0 +1,11 @@
+/suporte/uploads
+/vendor
+/gerenciamento/cronograma_master/upload
+sgpo.sublime-workspace
+.rocketeer/logs
+.idea
+.phpintel
+.buildpath
+.project
+.settings/
+.vscode

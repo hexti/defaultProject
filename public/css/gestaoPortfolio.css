@@ -1,0 +1,57 @@
+#user-navbar {
+	background-color: #efa91b;
+}
+
+#row-portf-l, #row-port-r {
+	background-color: #508783;
+	text-align: center;
+	border-radius: 2px;
+	height: 30px;
+	border-right: 5px solid;
+	border-color: #FFFFFF;
+}
+#row-portf-r {
+	background-color: #508783;
+	text-align: center;
+	border-radius: 2px;
+	height: 30px;
+}
+
+#row-portf-l, #row-portf-r  span {
+	text-transform: uppercase;
+	line-height: 3rem;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#gmaps-portf {
+	padding: 10px 10px 0 0;
+}
+
+#printer-port {
+	background-color: #e7e6e6;
+	height: 500px;
+	margin: 10px 0px 0 -5px;
+	padding: 0px;
+	text-align: center;
+}
+#printer-port img {
+	height: 40px;
+	width: 40px;
+}
+
+#port-actions {
+	background-color: #64a9a4;
+	float: right; height: 500px;
+	text-align: center;
+	margin-top: 10px;
+}
+#port-actions img {
+	height: 50px;
+	width: 50px;
+}
+#port-actions p {
+	color: #FFFFFF;
+	font-weight: bold;
+	line-height: 5rem
+}

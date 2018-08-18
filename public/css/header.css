@@ -1,0 +1,126 @@
+#pmf-logo{
+	width: 90%;
+	height: 90%;
+	padding-top: 5%;	
+	float: right;
+}
+#concremat-logo{
+	width: 50%;
+	height: 50%;
+	float: right;
+	bottom: 1px;
+	text-align: right;
+}
+
+#concremat-txt{
+	padding-top: 5%;	
+	text-align: right;
+}
+
+#user-logout{
+	float: right;
+}
+
+#user-settings{
+	float: right;
+}
+#user-avatar a{
+	padding-left: 5px;
+}
+#user-avatar img{
+	width: 35px;
+	height: 35px;
+	margin-right: 5px;
+}
+
+#user-logout a{
+	height: 100%;
+}
+#user-settings a{
+	height: 100%;
+}
+
+hr {
+	display: block;
+	height: 0px;
+	border: 0;
+	border-top: 2px solid #55908C;
+	margin: 0em 0;
+	padding: 0; 
+}
+
+.text-prefeitura{
+	color: #55908C;
+}
+
+.text-prefeitura a:link,
+.text-prefeitura a:visited{
+	color: #55908C;
+	text-decoration: none;
+}
+
+.navbar-prefeitura{
+	background-color: #55908C;
+	padding-left: 0px !important; 
+}
+
+.navbar-prefeitura .navbar-brand {
+	color: #777;
+}
+
+.navbar-prefeitura .navbar-brand:hover,
+.navbar-prefeitura .navbar-brand:focus {
+	color: #000;
+}
+/* Link */
+.navbar-prefeitura .navbar-nav > li > a {
+	color: #fff;
+}
+.navbar-prefeitura .navbar-nav > li > a:hover,
+.navbar-prefeitura .navbar-nav > li > a:focus {
+	color: #333;
+}
+.navbar-prefeitura .navbar-nav > .active > a,
+.navbar-prefeitura .navbar-nav > .active > a:hover,
+.navbar-prefeitura .navbar-nav > .active > a:focus {
+	color: #555;
+	background-color: #000;
+}
+.navbar-prefeitura .navbar-nav > .open > a,
+.navbar-prefeitura .navbar-nav > .open > a:hover,
+.navbar-prefeitura .navbar-nav > .open > a:focus {
+	color: #555;
+	background-color: #D5D5D5;
+}
+
+.navbar-prefeitura a:hover{
+	color: white!important;
+	background-color:#64A9A4!important;
+}
+/* Caret */
+.navbar-prefeitura .navbar-nav > .dropdown > a .caret {
+	border-top-color: #777;
+	border-bottom-color: #777;
+}
+.navbar-prefeitura .navbar-nav > .dropdown > a:hover .caret,
+.navbar-prefeitura .navbar-nav > .dropdown > a:focus .caret {
+	border-top-color: #333;
+	border-bottom-color: #333;
+}
+.navbar-prefeitura .navbar-nav > .open > a .caret,
+.navbar-prefeitura .navbar-nav > .open > a:hover .caret,
+.navbar-prefeitura .navbar-nav > .open > a:focus .caret {
+	border-top-color: #555;
+	border-bottom-color: #000;
+}
+/* Mobile version */
+.navbar-prefeitura .navbar-toggle {
+	border-color: #DDD;
+}
+.navbar-prefeitura .navbar-toggle:hover,
+.navbar-prefeitura .navbar-toggle:focus {
+	background-color: #DDD;
+}
+.navbar-prefeitura .navbar-toggle .icon-bar {
+	background-color: #CCC;
+}
